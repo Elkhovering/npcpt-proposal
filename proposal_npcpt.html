@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Коммерческое предложение — НПЦ ПРОМТЕХ × Neat Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --bg:#f4f7fb; --bg-2:#eaf1f9; --ink:#0a1424; --ink-soft:#3a4558; --muted:#6b7790;
+  --line:rgba(10,20,36,.08); --blue:#0b4f8a; --blue-2:#1f7ae0; --cyan:#2bb7ff; --azure:#6fd3ff;
+  --spark:#ff6b1a; --spark-2:#ffb547; --dark:#070b16; --dark-2:#0d1426;
+  --glass:rgba(255,255,255,.55); --glass-brd:rgba(255,255,255,.65);
+  --shadow-xl:0 40px 80px -20px rgba(10,40,90,.25),0 20px 40px -10px rgba(10,40,90,.12);
+  --shadow-lg:0 24px 48px -16px rgba(10,40,90,.22),0 8px 20px -6px rgba(10,40,90,.1);
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{min-height:100vh}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:"Manrope",sans-serif;letter-spacing:-.02em;font-weight:800;color:var(--ink)}
+h1{font-size:clamp(40px,6.5vw,96px);line-height:.98;letter-spacing:-.035em;font-weight:900}
+h2{font-size:clamp(30px,4vw,56px);line-height:1.04;letter-spacing:-.03em}
+h3{font-size:clamp(20px,2vw,30px);line-height:1.15}
+h4{font-size:18px;line-height:1.3;font-weight:700}
+p{color:var(--ink-soft);font-size:17px;line-height:1.6}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-2)}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
+.container{max-width:1280px;margin:0 auto;padding:0 32px}
+.section{position:relative;padding:120px 0}
+.section-sm{padding:80px 0}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;will-change:transform}
+.blob.b1{width:720px;height:720px;background:radial-gradient(circle,#8fd6ff 0%,transparent 65%);top:-220px;left:-220px}
+.blob.b2{width:640px;height:640px;background:radial-gradient(circle,#c6e2ff 0%,transparent 65%);top:40%;right:-260px}
+.blob.b3{width:520px;height:520px;background:radial-gradient(circle,#ffd1a8 0%,transparent 65%);bottom:-140px;left:30%;opacity:.35}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+main,nav.top,footer{position:relative;z-index:2}
+nav.top{position:fixed;top:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:28px;padding:10px 14px 10px 22px;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glass-brd);border-radius:100px;box-shadow:var(--shadow-lg);z-index:50}
+nav.top .logo{display:flex;align-items:center}
+nav.top a.nlink{font-size:14px;font-weight:500;color:var(--ink-soft);transition:color .2s}
+nav.top a.nlink:hover{color:var(--blue-2)}
+nav.top a.cta{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-2) 100%);color:#fff !important;padding:9px 18px;border-radius:100px;font-size:14px;font-weight:600;box-shadow:0 6px 16px -4px rgba(31,122,224,.5)}
+.hero{padding:200px 0 120px;position:relative}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(31,122,224,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(31,122,224,.08) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 70%)}
+.hero-inner{position:relative}
+.meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;background:var(--glass);border:1px solid var(--glass-brd);border-radius:100px;font-size:13px;font-weight:500;color:var(--ink-soft);backdrop-filter:blur(8px)}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--spark);box-shadow:0 0 0 4px rgba(255,107,26,.2)}
+.hero h1{max-width:1100px;margin-bottom:36px}
+.hero h1 .accent{background:linear-gradient(135deg,var(--spark) 0%,var(--spark-2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .accent-blue{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-2) 60%,var(--cyan) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{max-width:780px;font-size:19px;margin-bottom:40px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:100px;font-weight:600;font-size:15px;transition:all .25s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-2) 100%);color:#fff !important;box-shadow:0 14px 32px -10px rgba(31,122,224,.55)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px -10px rgba(31,122,224,.65)}
+.btn-ghost{background:var(--glass);border:1px solid var(--glass-brd);color:var(--ink);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:#fff}
+.btn .arrow{width:18px;height:18px;transition:transform .25s}
+.btn:hover .arrow{transform:translateX(4px)}
+/* Docs strip */
+.docs-strip{padding:0 0 60px}
+.docs-strip .inner{display:flex;gap:12px;flex-wrap:wrap}
+.doc-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:var(--glass);border:1px solid var(--glass-brd);border-radius:14px;backdrop-filter:blur(10px);box-shadow:var(--shadow-lg);font-size:14px;font-weight:500;color:var(--ink);transition:all .25s;cursor:pointer;text-decoration:none}
+.doc-btn:hover{background:#fff;transform:translateY(-2px);box-shadow:var(--shadow-xl)}
+.doc-btn .dico{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.doc-btn .dico.xlsx{background:linear-gradient(135deg,#1d6f42,#2ea865)}
+.doc-btn .dico.docx{background:linear-gradient(135deg,#185abd,#2b7cd3)}
+.doc-btn .dico.proto{background:linear-gradient(135deg,var(--spark),var(--spark-2))}
+.doc-btn .dtxt{display:flex;flex-direction:column;gap:1px}
+.doc-btn .dlabel{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.doc-btn .dname{font-size:14px;font-weight:600;color:var(--ink)}
+.s-head{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;margin-bottom:60px;align-items:end}
+.s-head .r{color:var(--ink-soft);font-size:18px;line-height:1.55;max-width:520px}
+.s-head .l .eyebrow{margin-bottom:18px}
+@media(max-width:900px){.s-head{grid-template-columns:1fr;gap:24px}}
+.plan-stages{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.stage{position:relative;padding:36px 30px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--glass-brd);backdrop-filter:blur(10px);box-shadow:var(--shadow-lg);overflow:hidden}
+.stage::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue-2),var(--cyan))}
+.stage.now::before{background:linear-gradient(90deg,#9aa7bd,#c2cddf)}
+.stage.plan::before{background:linear-gradient(90deg,var(--spark),var(--spark-2))}
+.stage .snum{font-family:Manrope;font-size:13px;font-weight:700;letter-spacing:.15em;color:var(--blue-2);margin-bottom:12px;text-transform:uppercase}
+.stage.now .snum{color:var(--muted)}
+.stage.plan .snum{color:var(--spark)}
+.stage h3{margin-bottom:14px}
+.stage p{font-size:15px;margin-bottom:18px}
+.stage ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
+.stage li{font-size:14px;color:var(--ink-soft);padding-left:22px;position:relative;line-height:1.5}
+.stage li::before{content:"";position:absolute;left:0;top:8px;width:10px;height:10px;border-radius:50%;background:var(--blue-2);opacity:.85}
+.stage.now li::before{background:#9aa7bd}
+.stage.plan li::before{background:var(--spark)}
+@media(max-width:900px){.plan-stages{grid-template-columns:1fr}}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;grid-auto-rows:minmax(180px,auto)}
+.bcard{padding:32px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--glass-brd);backdrop-filter:blur(10px);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.bcard.b-wide{grid-column:span 3}
+.bcard.b-wide2{grid-column:span 4}
+.bcard.b-norm{grid-column:span 2}
+.bcard.b-half{grid-column:span 3}
+.bcard .ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--blue-2),var(--cyan));display:grid;place-items:center;color:#fff;margin-bottom:8px}
+.bcard.orange .ico{background:linear-gradient(135deg,var(--spark),var(--spark-2))}
+.bcard.dark{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);border-color:rgba(255,255,255,.08)}
+.bcard.dark h4,.bcard.dark h3{color:#fff}
+.bcard.dark p{color:rgba(255,255,255,.7)}
+.bcard h4{font-size:20px;font-weight:700;margin-bottom:0}
+.bcard p{font-size:14px;line-height:1.55}
+.bcard .tag{align-self:flex-start;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;background:rgba(31,122,224,.12);color:var(--blue-2);letter-spacing:.05em;text-transform:uppercase}
+@media(max-width:1000px){.bento{grid-template-columns:repeat(2,1fr)}.bcard.b-wide,.bcard.b-wide2,.bcard.b-norm,.bcard.b-half{grid-column:span 2}}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.tier{padding:40px 32px;border-radius:var(--radius);background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.tier.featured{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);color:#fff;transform:scale(1.04);box-shadow:0 50px 100px -20px rgba(10,40,90,.45)}
+.tier.featured h3,.tier.featured .price{color:#fff}
+.tier.featured p{color:rgba(255,255,255,.72)}
+.tier.featured .feat li{color:rgba(255,255,255,.85)}
+.tier.featured .feat li::before{color:var(--cyan)}
+.tier .tname{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-2);margin-bottom:14px}
+.tier.featured .tname{color:var(--cyan)}
+.tier h3{margin-bottom:14px;font-size:28px}
+.tier .subtitle{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.5}
+.tier.featured .subtitle{color:rgba(255,255,255,.6)}
+.tier .price{font-family:Manrope;font-size:44px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:6px}
+.tier .price-meta{font-size:13px;color:var(--muted);margin-bottom:28px}
+.tier.featured .price-meta{color:rgba(255,255,255,.55)}
+.tier .feat{list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;flex:1}
+.tier .feat li{font-size:14px;color:var(--ink-soft);padding-left:26px;position:relative;line-height:1.5}
+.tier .feat li::before{content:"✓";position:absolute;left:0;top:0;color:var(--blue-2);font-weight:700}
+.tier .feat li.pro::before{content:"★";color:var(--spark)}
+.tier .tbtn{display:block;text-align:center;padding:14px 20px;border-radius:100px;font-weight:600;font-size:14px;background:var(--bg-2);color:var(--ink)}
+.tier.featured .tbtn{background:linear-gradient(135deg,var(--spark),var(--spark-2));color:#fff}
+.tier .badge{position:absolute;top:18px;right:18px;padding:5px 12px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;background:var(--spark);color:#fff}
+@media(max-width:1000px){.tiers{grid-template-columns:1fr}.tier.featured{transform:none}}
+.cmp{margin-top:60px;border-radius:var(--radius);background:#fff;border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow-lg)}
+.cmp-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:1px solid var(--line);align-items:center}
+.cmp-row:last-child{border-bottom:none}
+.cmp-row.head{background:linear-gradient(135deg,#f0f5fb 0%,#e3edf8 100%);font-weight:700}
+.cmp-row.head div{padding:18px 20px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.cmp-row.group{background:#f6f9fc}
+.cmp-row.group div{padding:14px 20px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-2);font-weight:700}
+.cmp-row div{padding:14px 20px;font-size:14px;color:var(--ink-soft)}
+.cmp-row .lbl{color:var(--ink);font-weight:500}
+.cmp-row .yes{color:var(--blue-2);font-weight:600}
+.cmp-row .no{color:#c2cddf}
+.cmp-row.total{background:linear-gradient(135deg,var(--dark),var(--dark-2));color:#fff}
+.cmp-row.total div{color:#fff;padding:22px 20px;font-family:Manrope;font-weight:800}
+.cmp-row.total .p{font-size:22px}
+.cmp-row.total .p.pro{color:var(--cyan)}
+@media(max-width:900px){.cmp-row{grid-template-columns:1fr}}
+.ai-panel{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:50px;align-items:start}
+.chat{background:linear-gradient(135deg,var(--dark),var(--dark-2));border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-xl);min-height:520px;display:flex;flex-direction:column;gap:12px}
+.chat .chead{display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:4px}
+.chat .chead .av{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--blue-2),var(--cyan));display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px}
+.chat .chead .name{color:#fff;font-size:14px;font-weight:600}
+.chat .chead .status{font-size:12px;color:#6fd3ff;margin-left:auto}
+.msg{max-width:82%;padding:12px 16px;border-radius:14px;font-size:14px;line-height:1.5}
+.msg.u{background:linear-gradient(135deg,var(--blue-2),var(--cyan));color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.msg.a{background:rgba(255,255,255,.06);color:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.08);border-bottom-left-radius:4px}
+.msg.a .cite{display:block;font-size:11px;color:#6fd3ff;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.1)}
+.ai-cards{display:flex;flex-direction:column;gap:16px}
+.ai-card{padding:28px 26px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--glass-brd);backdrop-filter:blur(10px);box-shadow:var(--shadow-lg)}
+.ai-card .ahead{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.ai-card .aico{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--spark),var(--spark-2));display:grid;place-items:center;color:#fff}
+.ai-card h4{margin:0}
+.ai-card p{font-size:14px;margin-top:6px}
+.ai-card .priceline{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.ai-card .priceline .p{font-family:Manrope;font-weight:800;font-size:20px;color:var(--ink)}
+.ai-card .priceline .d{font-size:12px;color:var(--muted)}
+@media(max-width:900px){.ai-panel{grid-template-columns:1fr}}
+.road{position:relative;margin-top:60px;padding-left:32px}
+.road::before{content:"";position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.road-line{position:absolute;left:10px;top:8px;width:2px;background:linear-gradient(180deg,var(--blue-2),var(--cyan),var(--spark));transform-origin:top;transform:scaleY(0)}
+.rstep{position:relative;padding:0 0 36px 30px}
+.rstep:last-child{padding-bottom:0}
+.rstep::before{content:"";position:absolute;left:-28px;top:4px;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--blue-2);box-shadow:0 0 0 6px rgba(31,122,224,.1)}
+.rstep .rlabel{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-2);margin-bottom:6px}
+.rstep h4{font-size:22px;margin-bottom:8px}
+.rstep p{font-size:15px;max-width:680px}
+.rstep .rmeta{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:5px 12px;background:var(--bg-2);border-radius:100px;font-size:12px;color:var(--muted);font-weight:500}
+/* Final CTA — original centered style */
+.final{position:relative;padding:180px 0 140px;text-align:center;overflow:hidden}
+.final .bg-ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1400px;height:1400px;border-radius:50%;background:conic-gradient(from 0deg,transparent,rgba(43,183,255,.15),transparent 30%,rgba(255,107,26,.12),transparent 60%,rgba(31,122,224,.18),transparent);filter:blur(80px);opacity:.7;z-index:0}
+.final .inner{position:relative;z-index:2}
+.final h2{font-size:clamp(44px,6vw,96px);line-height:1;max-width:900px;margin:0 auto}
+.final h2 .grad{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-2) 50%,var(--cyan) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.final p{margin:32px auto 0;max-width:560px;font-size:18px}
+.final .fctas{margin-top:56px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.final .contact{margin-top:80px;display:inline-flex;gap:40px;padding:28px 40px;background:var(--glass);backdrop-filter:blur(18px);border:1px solid var(--glass-brd);border-radius:24px;box-shadow:var(--shadow-xl);flex-wrap:wrap;justify-content:center}
+.final .contact .ci{display:flex;flex-direction:column;gap:4px;text-align:left}
+.final .contact .ci .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:600}
+.final .contact .ci .v{font-family:"Manrope";font-size:16px;font-weight:700;color:var(--ink)}
+/* Proto CTA bar */
+.proto-cta-bar{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:28px 36px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue-2) 100%);border-radius:var(--radius);margin-top:100px;margin-bottom:72px;flex-wrap:wrap;box-shadow:var(--shadow-xl);position:relative;overflow:hidden}
+.proto-cta-bar::after{content:"";position:absolute;right:-60px;top:-80px;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none}
+.proto-cta-bar .pcb-text h4{color:#fff;font-size:20px;font-weight:700;font-family:"Manrope"}
+.proto-cta-bar .pcb-text p{color:rgba(255,255,255,.72);font-size:14px;margin-top:6px}
+.proto-cta-bar .btn-white{background:#fff;color:var(--blue);padding:14px 24px;border-radius:100px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;transition:all .25s;box-shadow:0 8px 24px -6px rgba(0,0,0,.2)}
+.proto-cta-bar .btn-white:hover{transform:translateY(-2px);box-shadow:0 14px 32px -6px rgba(0,0,0,.3)}
+.proto-cta-bar .btn-white svg{width:16px;height:16px;flex-shrink:0}
+/* Bento grid — 4 карточки под 4 изображения */
+.bento-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:420px 380px;gap:14px}
+.bc-b{grid-column:1/3;grid-row:1}   /* широкая верхняя — image(1).png */
+.bc-a{grid-column:3;grid-row:1}     /* узкая верхняя правая — image.png */
+.bc-c{grid-column:1;grid-row:2}     /* узкая нижняя левая — image(2).png */
+.bc-d{grid-column:2/4;grid-row:2}   /* широкая нижняя — image(3).png */
+.bento-card{border-radius:20px;overflow:hidden;background:#fff;box-shadow:var(--shadow-lg);border:1px solid var(--line);display:flex;flex-direction:column;position:relative;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.bento-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-xl)}
+.bento-card .bc-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:#f1f4f8;border-bottom:1px solid var(--line);flex-shrink:0}
+.bento-card .bc-bar .dots{display:flex;gap:5px}
+.bento-card .bc-bar .dots span{width:9px;height:9px;border-radius:50%}
+.bento-card .bc-bar .dots span:nth-child(1){background:#ff6b6b}
+.bento-card .bc-bar .dots span:nth-child(2){background:#ffd166}
+.bento-card .bc-bar .dots span:nth-child(3){background:#4cd97b}
+.bento-card .bc-bar .url{flex:1;padding:4px 10px;background:#fff;border-radius:6px;font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted)}
+.bento-card .bc-screen{flex:1;overflow:hidden;background:#eef4fc}
+.bento-card .bc-screen img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.bc-badge{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.6);padding:5px 11px;border-radius:999px;font-size:11px;font-weight:600;color:var(--ink);letter-spacing:.02em;z-index:4}
+.bc-badge.spark{background:rgba(255,107,26,.12);border-color:rgba(255,107,26,.25);color:var(--spark)}
+.bc-badge.blue{background:rgba(31,122,224,.1);border-color:rgba(31,122,224,.22);color:var(--blue-2)}
+/* Imp-features */
+.imp-features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:80px}
+.imp-card{background:var(--glass);backdrop-filter:blur(18px);border:1px solid var(--glass-brd);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-lg)}
+.imp-card .ic-ico{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;color:#fff;margin-bottom:20px;box-shadow:0 10px 24px -6px rgba(31,122,224,.5)}
+.imp-card h4{font-size:18px;margin-bottom:8px}
+.imp-card p{font-size:14px}
+@media(max-width:900px){.bento-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.bc-a,.bc-b,.bc-c,.bc-d{grid-column:auto;grid-row:auto;min-height:220px}.bc-b{grid-column:1/3}.imp-features{grid-template-columns:1fr}}
+@media(max-width:580px){.bento-grid{grid-template-columns:1fr}.bc-b,.bc-a,.bc-c,.bc-d{grid-column:1}}
+footer{padding:40px 0;border-top:1px solid var(--line);margin-top:80px;color:var(--muted);font-size:13px}
+footer .frow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.reveal{opacity:0;transform:translateY(24px)}
+@media(max-width:900px){nav.top{gap:14px;padding:8px 10px 8px 16px}nav.top a.nlink{display:none}nav.top a.cta{padding:8px 14px}}
+</style>
+</head>
+<body>
+
+<div class="ambient"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div class="grain"></div>
+
+<nav class="top">
+  <div class="logo"><img src="media/logo/NeatStudio-black.svg" alt="Neat Studio" style="height:20px;width:auto;display:block"></div>
+  <a class="nlink" href="#plan">План развития</a>
+  <a class="nlink" href="#features">Возможности</a>
+  <a class="nlink" href="#proposals">Пакеты</a>
+  <a class="nlink" href="#ai">ИИ-платформа</a>
+  <a class="nlink" href="#roadmap">Этапы</a>
+  <a class="cta" href="#contact">Начать</a>
+</nav>
+
+<main>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container hero-inner">
+    <div class="meta reveal">
+      <div class="chip"><span class="dot"></span>Коммерческое предложение · Апрель 2026</div>
+      <div class="chip" style="gap:14px;padding:8px 16px">
+        <img src="media/logo/logo_ru.svg" alt="НПЦ ПРОМТЕХ" style="height:22px;width:auto;display:block" />
+        <span style="color:var(--muted);font-size:14px;font-weight:300">×</span>
+        <img src="media/logo/NeatStudio-black.svg" alt="Neat Studio" style="height:18px;width:auto;display:block" />
+      </div>
+    </div>
+    <h1 class="reveal">
+      Корпоративная платформа<br>
+      для производителя <span class="accent-blue">железнодорожного</span><br>
+      оборудования нового поколения
+    </h1>
+    <p class="sub reveal">
+      Единый каталог с трёхуровневой маркерной классификацией, интеграция с 1С,
+      ИИ-консультант на RAG и автоматический конструктор ТКП. Сайт, который берёт на себя
+      <span style="color:var(--blue-2);font-weight:600">первичную обработку заявок</span> —
+      от клика по QR-коду на изделии до готового коммерческого предложения.
+    </p>
+    <div class="hero-ctas reveal">
+      <a class="btn btn-primary" href="#proposals">
+        Смотреть предложения
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#plan">План развития платформы</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="plan">
+  <div class="container">
+    <div class="s-head">
+      <div class="l reveal">
+        <span class="eyebrow">01 · План развития платформы</span>
+        <h2>От корпоративного&nbsp;сайта к&nbsp;цифровому продукту</h2>
+      </div>
+      <div class="r reveal">
+        Проект рассчитан на эволюцию: на первом этапе запускаем витрину и каталог,
+        на втором — замыкаем продажи, на третьем — подключаем ИИ и автоматизируем
+        предпроектную работу. Каждый этап самостоятелен и окупаем.
+      </div>
+    </div>
+
+    <div class="plan-stages">
+      <div class="stage now reveal">
+        <div class="snum">Сейчас · точка отсчёта</div>
+        <h3>Как есть сегодня</h3>
+        <p>У НПЦ ПРОМТЕХ нет единого цифрового интерфейса к&nbsp;продуктовой линейке. Информация о&nbsp;сотнях единиц оборудования разрознена.</p>
+        <ul>
+          <li>Нет публичного каталога с&nbsp;фильтрами по&nbsp;типу депо и&nbsp;подвижного состава</li>
+          <li>Цены, QR-коды и&nbsp;характеристики живут в&nbsp;1С — не&nbsp;попадают к&nbsp;клиенту</li>
+          <li>Запросы на&nbsp;КП обрабатываются вручную из&nbsp;почты</li>
+          <li>Нет связки с&nbsp;мессенджерами и&nbsp;Avito</li>
+        </ul>
+      </div>
+
+      <div class="stage reveal">
+        <div class="snum">Этап 1–2 · цифровая витрина</div>
+        <h3>Сайт, каталог, заявки</h3>
+        <p>Запуск сайта с&nbsp;11&nbsp;разделами, единым каталогом с&nbsp;маркерной классификацией L1/L2/L3 и&nbsp;автоматической синхронизацией с&nbsp;1С.</p>
+        <ul>
+          <li>Каталог по&nbsp;8&nbsp;типам депо — от&nbsp;электровозного до&nbsp;метрополитена</li>
+          <li>Двусторонний обмен с&nbsp;1С через CommerceML — номенклатура, цены, QR, фото</li>
+          <li>«Мой каталог» → автоматическое базовое ТКП → лид в&nbsp;1С</li>
+          <li>Интеграции: Telegram, Avito, МАКС, hh.ru</li>
+        </ul>
+      </div>
+
+      <div class="stage plan reveal">
+        <div class="snum">Этап 3 · ИИ-платформа</div>
+        <h3>Автоматизация предпроекта</h3>
+        <p>Корпоративная база знаний и&nbsp;RAG-архитектура закрывают рутинную работу менеджеров и&nbsp;технических специалистов.</p>
+        <ul>
+          <li>ИИ-консультант по&nbsp;каталогу и&nbsp;документации на&nbsp;RAG</li>
+          <li>Конструктор ТКП: от&nbsp;подборки до&nbsp;PDF&nbsp;/&nbsp;DOCX за&nbsp;минуты</li>
+          <li>Автоматическая обработка запросов из&nbsp;почты (IMAP → черновик ответа)</li>
+          <li>Предпроектный помощник с&nbsp;ведомостью материалов из&nbsp;1С</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:40px" class="reveal">
+      <a class="doc-btn" href="14.04.2026 ТЗ Сайт НПЦ ПРОМТЕХ.docx" target="_blank">
+        <div class="dico docx"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4h4M14 3L4 3v18h16V7z"/><path d="M8 13h8M8 17h6"/></svg></div>
+        <div class="dtxt">
+          <span class="dlabel">Word · ТЗ</span>
+          <span class="dname">Техническое задание на разработку сайта</span>
+        </div>
+        <svg style="margin-left:auto;opacity:.45" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="container">
+    <div class="s-head">
+      <div class="l reveal">
+        <span class="eyebrow">02 · Ключевые возможности</span>
+        <h2>Что получит <span class="accent-blue">бизнес и&nbsp;клиент</span></h2>
+      </div>
+      <div class="r reveal">
+        Платформа решает четыре задачи одновременно: витрина для&nbsp;клиента, рабочий инструмент для&nbsp;менеджеров, канал лидогенерации и&nbsp;база знаний для&nbsp;ИИ.
+      </div>
+    </div>
+
+    <div class="bento">
+      <div class="bcard b-wide reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg></div>
+        <span class="tag">Каталог</span>
+        <h4>Единый каталог с&nbsp;маркерной классификацией L1&nbsp;→&nbsp;L2&nbsp;→&nbsp;L3</h4>
+        <p>Одна номенклатурная единица относится сразу к&nbsp;нескольким разделам: тип подвижного состава → классификация депо → цех/участок. Фасетные фильтры без&nbsp;перезагрузки страницы. Источник истины — 1С.</p>
+      </div>
+
+      <div class="bcard b-half orange reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></div>
+        <span class="tag" style="background:rgba(255,107,26,.14);color:var(--spark)">QR + 1С</span>
+        <h4>QR-код на&nbsp;каждое изделие</h4>
+        <p>Клиент сканирует код прямо на&nbsp;станке, попадает на&nbsp;карточку с&nbsp;актуальным описанием, ценой и&nbsp;кнопкой заявки. Формируется на&nbsp;стороне 1С.</p>
+      </div>
+
+      <div class="bcard b-norm reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h7M16 16l2 2 4-4"/></svg></div>
+        <h4>«Мой каталог»</h4>
+        <p>Подборка без&nbsp;регистрации: клиент собирает нужное → получает автоматическое базовое ТКП на&nbsp;почту, менеджер — уведомление и&nbsp;лид в&nbsp;1С.</p>
+      </div>
+
+      <div class="bcard b-norm reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h4>Консультация в&nbsp;один клик</h4>
+        <p>Форма обращения с&nbsp;привязкой к&nbsp;странице каталога + быстрый переход в&nbsp;Telegram, WhatsApp, МАКС. Защита Яндекс.Капчей.</p>
+      </div>
+
+      <div class="bcard b-norm reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h4>Цифровое депо</h4>
+        <p>Раздел, презентующий готовые комплексы оборудования для&nbsp;разных типов депо — от&nbsp;предварительного подбора к&nbsp;заявке на&nbsp;проектирование.</p>
+      </div>
+
+      <div class="bcard b-wide2 dark reveal">
+        <div class="ico" style="background:linear-gradient(135deg,var(--spark),var(--spark-2))"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <span class="tag" style="background:rgba(255,107,26,.2);color:var(--spark-2)">Интеграция</span>
+        <h4>Двусторонний обмен с&nbsp;1С через CommerceML</h4>
+        <p>Номенклатура, базовые цены, QR-коды, признаки выгрузки, статус «временно не&nbsp;производится», фотографии — всё синхронизируется автоматически по&nbsp;расписанию. Заявки и&nbsp;лиды уходят в&nbsp;1С обратно.</p>
+      </div>
+
+      <div class="bcard b-norm reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/></svg></div>
+        <h4>hh.ru · Avito · Telegram</h4>
+        <p>Вакансии тянутся с&nbsp;hh.ru автоматически. Товары публикуются на&nbsp;Avito из&nbsp;1С. Новости — в&nbsp;Telegram и&nbsp;МАКС одной кнопкой из&nbsp;админки.</p>
+      </div>
+
+      <div class="bcard b-half reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2 4 4 8-8 4 4"/></svg></div>
+        <h4>Мониторинг и&nbsp;журнал ошибок</h4>
+        <p>Дашборд метрик, алерты по&nbsp;сбоям интеграций, соответствие 152-ФЗ. Система ролей, журнал действий, личный кабинет клиента.</p>
+      </div>
+    </div>
+
+    <!-- Proto CTA bar -->
+    <div class="proto-cta-bar reveal">
+      <div class="pcb-text">
+        <h4>Концептуальные экраны будущего сайта</h4>
+        <p>Каталог с маркерной классификацией, карточка изделия с QR, «Мой каталог» и личный кабинет.</p>
+      </div>
+      <a class="btn-white" href="#" target="_blank">
+        Открыть прототип
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+
+    <!-- Bento grid — 4 карточки, 4 уникальных изображения -->
+    <div class="bento-grid">
+
+      <!-- Широкая верхняя левая — каталог с маркерами -->
+      <div class="bento-card bc-b reveal">
+        <div class="bc-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url">npcpt.ru/catalog</div>
+        </div>
+        <div class="bc-screen">
+          <img src="media/future-website/image (1).png" alt="Каталог продукции" loading="lazy" />
+        </div>
+        <div class="bc-badge blue">Каталог · L1 / L2 / L3</div>
+      </div>
+
+      <!-- Узкая верхняя правая — главная страница -->
+      <div class="bento-card bc-a reveal">
+        <div class="bc-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url">npcpt.ru</div>
+        </div>
+        <div class="bc-screen">
+          <img src="media/future-website/image.png" alt="Главная страница" loading="lazy" />
+        </div>
+        <div class="bc-badge">Главная страница</div>
+      </div>
+
+      <!-- Узкая нижняя левая — карточка изделия -->
+      <div class="bento-card bc-c reveal">
+        <div class="bc-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url">npcpt.ru/catalog/product/</div>
+        </div>
+        <div class="bc-screen">
+          <img src="media/future-website/image (2).png" alt="Карточка изделия" loading="lazy" />
+        </div>
+        <div class="bc-badge">Карточка изделия + QR</div>
+      </div>
+
+      <!-- Узкая нижняя — мой каталог / ТКП -->
+      <div class="bento-card bc-d reveal">
+        <div class="bc-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url">npcpt.ru/my</div>
+        </div>
+        <div class="bc-screen">
+          <img src="media/future-website/image (3).png" alt="Мой каталог" loading="lazy" />
+        </div>
+        <div class="bc-badge">Мой каталог / ТКП</div>
+      </div>
+
+    </div>
+
+    <!-- Feature-карточки под bento -->
+    <div class="imp-features">
+      <div class="imp-card reveal">
+        <div class="ic-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg></div>
+        <h4>Маркерная классификация L1/L2/L3</h4>
+        <p>Одно изделие — несколько разделов каталога одновременно. Фасетные фильтры по типу депо, подвижному составу и участку без перезагрузки страницы.</p>
+      </div>
+      <div class="imp-card reveal">
+        <div class="ic-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h4>Двусторонний обмен с 1С</h4>
+        <p>CommerceML: номенклатура, цены, QR-коды, статус «не производится», фото — всё из 1С. Заявки и лиды уходят обратно автоматически.</p>
+      </div>
+      <div class="imp-card reveal">
+        <div class="ic-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4h4M14 3L4 3v18h16V7z"/><path d="M8 13h8M8 17h6"/></svg></div>
+        <h4>ТКП в один клик</h4>
+        <p>Клиент собирает подборку без регистрации → получает базовое ТКП на почту. Менеджер — уведомление и лид в 1С. Полный конструктор ТКП — в пакете «Платформа».</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="proposals">
+  <div class="container">
+    <div class="s-head">
+      <div class="l reveal">
+        <span class="eyebrow">03 · Варианты реализации</span>
+        <h2>Три пакета — от&nbsp;витрины до&nbsp;полноценной платформы</h2>
+      </div>
+      <div class="r reveal">
+        Все три варианта решают задачу каталога, но&nbsp;отличаются глубиной функционала, качеством интерфейса и&nbsp;наличием ИИ-модулей. Можно стартовать с&nbsp;любого и&nbsp;дорастать.
+      </div>
+    </div>
+
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tname">Пакет 1 · Битрикс Базовый</div>
+        <h3>Готовая витрина на&nbsp;1С-Битрикс</h3>
+        <div class="subtitle">Стандартный корпоративный сайт с&nbsp;каталогом на&nbsp;редакции «Малый бизнес». Минимальный набор интеграций, типовой дизайн-макет.</div>
+        <div class="price">789&nbsp;256&nbsp;₽</div>
+        <div class="price-meta">~48 рабочих дней</div>
+        <ul class="feat">
+          <li>Дизайн по&nbsp;готовому шаблону · 11 страниц</li>
+          <li>Адаптивная вёрстка (1140/960/768/480/320)</li>
+          <li>Базовый каталог с&nbsp;простыми фильтрами</li>
+          <li>Форма заявок → e-mail + 1С-лид</li>
+          <li>Интеграция с&nbsp;1С: импорт номенклатуры</li>
+          <li>Telegram и&nbsp;Avito: базовая публикация</li>
+          <li>SEO-техоптимизация, sitemap, robots.txt</li>
+        </ul>
+        <a class="tbtn" href="#contact">Обсудить пакет</a>
+      </div>
+
+      <div class="tier reveal">
+        <div class="tname">Пакет 2 · Битрикс Расширенный</div>
+        <h3>Витрина с&nbsp;личным кабинетом и&nbsp;CRM</h3>
+        <div class="subtitle">Полнофункциональный каталог, авторизация, личный кабинет, интеграция с&nbsp;Bitrix24. Оптимальный баланс цены и&nbsp;возможностей.</div>
+        <div class="price">2 621 855&nbsp;₽</div>
+        <div class="price-meta">~112 рабочих дней</div>
+        <ul class="feat">
+          <li>Индивидуальный дизайн · PWA-адаптивность</li>
+          <li>Единый каталог L1/L2/L3 с&nbsp;фасетной фильтрацией</li>
+          <li>Маркерная классификация + управление из&nbsp;1С</li>
+          <li>Личный кабинет, RBAC-роли, «Мой каталог»</li>
+          <li>Интеграция с&nbsp;Bitrix24 CRM по&nbsp;REST</li>
+          <li>Telegram Open Channels, МАКС, Avito</li>
+          <li>Мониторинг, журнал ошибок, алерты</li>
+          <li class="pro">3D-просмотр карточек (где применимо)</li>
+        </ul>
+        <a class="tbtn" href="#contact">Выбрать пакет</a>
+      </div>
+
+      <div class="tier featured reveal">
+        <div class="tname">Пакет 3 · Самописная платформа</div>
+        <h3>Цифровая платформа с&nbsp;ИИ-ядром</h3>
+        <div class="subtitle">Максимум: собственная архитектура, полный контроль, RAG-система, конструктор КП и&nbsp;ИИ-автоматизация предпроекта.</div>
+        <div class="price">5 801 051&nbsp;₽</div>
+        <div class="price-meta">~144 рабочих дня</div>
+        <ul class="feat">
+          <li>Всё из&nbsp;«Расширенного» пакета</li>
+          <li class="pro">RAG-система · корпоративная база знаний</li>
+          <li class="pro">ИИ-конструктор ТКП → PDF&nbsp;/&nbsp;DOCX</li>
+          <li class="pro">Предпроектный помощник с&nbsp;BOM из&nbsp;1С</li>
+          <li class="pro">Автообработка запросов из&nbsp;почты (IMAP+n8n)</li>
+          <li class="pro">Векторный поиск Elasticsearch</li>
+          <li class="pro">ИИ-консультант на&nbsp;сайте · guardrails</li>
+          <li>Полная независимость от&nbsp;вендорных лицензий</li>
+        </ul>
+        <a class="tbtn" href="#contact">Выбрать пакет</a>
+      </div>
+    </div>
+
+    <div class="cmp reveal">
+      <div class="cmp-row head"><div>Что входит</div><div>Базовый</div><div>Расширенный</div><div>Платформа</div></div>
+      <div class="cmp-row group"><div>Дизайн и&nbsp;вёрстка</div><div></div><div></div><div></div></div>
+      <div class="cmp-row"><div class="lbl">Индивидуальный дизайн</div><div class="no">Типовой</div><div class="yes">Да</div><div class="yes">Да</div></div>
+      <div class="cmp-row"><div class="lbl">PWA-адаптация</div><div class="no">—</div><div class="yes">Да</div><div class="yes">Да</div></div>
+      <div class="cmp-row group"><div>Каталог продукции</div><div></div><div></div><div></div></div>
+      <div class="cmp-row"><div class="lbl">Маркерная классификация L1/L2/L3</div><div class="no">Упрощённая</div><div class="yes">Полная</div><div class="yes">Полная</div></div>
+      <div class="cmp-row"><div class="lbl">Фасетные фильтры</div><div class="no">Базовые</div><div class="yes">Полные</div><div class="yes">Полные</div></div>
+      <div class="cmp-row"><div class="lbl">3D-просмотр карточек</div><div class="no">—</div><div class="yes">Да</div><div class="yes">Да</div></div>
+      <div class="cmp-row group"><div>Заявки и&nbsp;«Мой каталог»</div><div></div><div></div><div></div></div>
+      <div class="cmp-row"><div class="lbl">Базовое ТКП автоматически</div><div class="yes">Да</div><div class="yes">Да</div><div class="yes">Да</div></div>
+      <div class="cmp-row"><div class="lbl">Личный кабинет с&nbsp;историей</div><div class="no">—</div><div class="yes">Да</div><div class="yes">Да</div></div>
+      <div class="cmp-row"><div class="lbl">Конструктор КП (PDF/DOCX)</div><div class="no">—</div><div class="no">—</div><div class="yes">Да</div></div>
+      <div class="cmp-row group"><div>Интеграции</div><div></div><div></div><div></div></div>
+      <div class="cmp-row"><div class="lbl">1С (CommerceML, двусторонний)</div><div class="yes">Импорт</div><div class="yes">Полный</div><div class="yes">Полный</div></div>
+      <div class="cmp-row"><div class="lbl">CRM (Bitrix24)</div><div class="no">Базовая</div><div class="yes">Полная</div><div class="yes">Полная</div></div>
+      <div class="cmp-row"><div class="lbl">Telegram / Avito / МАКС</div><div class="yes">Базовая</div><div class="yes">Полная</div><div class="yes">Полная</div></div>
+      <div class="cmp-row group"><div>ИИ и&nbsp;автоматизация</div><div></div><div></div><div></div></div>
+      <div class="cmp-row"><div class="lbl">RAG-система · база знаний</div><div class="no">—</div><div class="no">—</div><div class="yes">Да</div></div>
+      <div class="cmp-row"><div class="lbl">Векторный поиск Elasticsearch</div><div class="no">—</div><div class="no">—</div><div class="yes">Да</div></div>
+      <div class="cmp-row"><div class="lbl">ИИ-консультант на&nbsp;сайте</div><div class="no">—</div><div class="no">—</div><div class="yes">Да</div></div>
+      <div class="cmp-row"><div class="lbl">Автоответы по&nbsp;почте (IMAP)</div><div class="no">—</div><div class="no">—</div><div class="yes">Да</div></div>
+      <div class="cmp-row total"><div>Итого</div><div class="p">789 256&nbsp;₽</div><div class="p pro">2 621 855&nbsp;₽</div><div class="p">5 801 051&nbsp;₽</div></div>
+    </div>
+
+    <div style="margin-top:24px;display:flex;justify-content:flex-end" class="reveal">
+      <a class="doc-btn" href="Просчет+категории_НПЦПТ_14.04_17-55.xlsx" target="_blank">
+        <div class="dico xlsx"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4h4M14 3L4 3v18h16V7z"/><path d="M8 13h8M8 17h6"/></svg></div>
+        <div class="dtxt">
+          <span class="dlabel">Excel · Смета</span>
+          <span class="dname">Детальный просчёт по всем пакетам</span>
+        </div>
+        <svg style="margin-left:8px;opacity:.45" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ai" style="background:linear-gradient(180deg,transparent,#eaf1f9 30%,#eaf1f9 70%,transparent)">
+  <div class="container">
+    <div class="s-head">
+      <div class="l reveal">
+        <span class="eyebrow">04 · ИИ-модуль платформы</span>
+        <h2>ИИ, <span class="accent">обученный</span> на&nbsp;вашей документации</h2>
+      </div>
+      <div class="r reveal">
+        Корпоративная база знаний + RAG-архитектура дают ответам опору на&nbsp;реальные документы НПЦ&nbsp;ПРОМТЕХ. Никаких галлюцинаций — только выдержки из&nbsp;паспортов, сертификатов и&nbsp;ТУ.
+      </div>
+    </div>
+
+    <div class="ai-panel">
+      <div class="chat reveal">
+        <div class="chead">
+          <div class="av">ИИ</div>
+          <div class="name">Консультант НПЦ ПРОМТЕХ</div>
+          <div class="status">● на&nbsp;связи</div>
+        </div>
+        <div class="msg u">Добрый день. Ищу колёсотокарный станок для&nbsp;трамвайного депо. Что можете предложить?</div>
+        <div class="msg a">Для&nbsp;трамвайного депо у&nbsp;нас есть два подходящих решения. Оптимальный вариант — станок КЖ-30Т (децимальный № НПТ.412.17). Диаметр обработки до&nbsp;1250&nbsp;мм, автоматическая диагностика профиля.
+          <span class="cite">Источник: Паспорт КЖ-30Т, п.&nbsp;3.2 · Каталог НПЦ ПРОМТЕХ</span>
+        </div>
+        <div class="msg u">Есть ли&nbsp;в&nbsp;нём функция неразрушающего контроля?</div>
+        <div class="msg a">Да, в&nbsp;базовой комплектации. Модуль УЗК встроен в&nbsp;стойку ЧПУ, глубина контроля до&nbsp;80&nbsp;мм. Требует выделенной воздушной магистрали.
+          <span class="cite">Источник: ТУ 3185-014-НПТ-2024, раздел 4</span>
+        </div>
+        <div class="msg u">Соберите мне подборку для&nbsp;полного участка обточки колёсных пар</div>
+        <div class="msg a">Готово. Добавил 6&nbsp;позиций в&nbsp;«Мой каталог»: станок, стенд дефектоскопии, подъёмники, подкатная тележка. Базовое ТКП отправлю на&nbsp;почту после заполнения контактов.</div>
+      </div>
+
+      <div class="ai-cards">
+        <div class="ai-card reveal">
+          <div class="ahead">
+            <div class="aico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h6"/></svg></div>
+            <h4>RAG-система на&nbsp;базе знаний</h4>
+          </div>
+          <p>Корпоративные документы индексируются в&nbsp;векторное хранилище. Ответы генерируются на&nbsp;базе найденных фрагментов с&nbsp;guardrails — никакой отсебятины. LangChain.js&nbsp;/ LlamaIndex.js.</p>
+          <div class="priceline"><span class="d">15 рабочих дней</span><span class="p">428 530&nbsp;₽</span></div>
+        </div>
+
+        <div class="ai-card reveal">
+          <div class="ahead">
+            <div class="aico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4h4M14 3L4 3v18h16V7z"/><path d="M8 13h8M8 17h6"/></svg></div>
+            <h4>Конструктор ТКП → PDF/DOCX</h4>
+          </div>
+          <p>Сборка технико-коммерческого предложения по&nbsp;шаблону: выборка позиций, расчёт стоимости, условия поставки, паспорт проекта. Готовый документ — в&nbsp;PDF и&nbsp;DOCX.</p>
+          <div class="priceline"><span class="d">17 рабочих дней</span><span class="p">477 447&nbsp;₽</span></div>
+        </div>
+
+        <div class="ai-card reveal">
+          <div class="ahead">
+            <div class="aico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            <h4>Векторный поиск по&nbsp;каталогу</h4>
+          </div>
+          <p>Elasticsearch с&nbsp;поиском по&nbsp;смыслу, а&nbsp;не&nbsp;только по&nbsp;точному совпадению. Учитывает синонимы, альтернативные формулировки, морфологию.</p>
+          <div class="priceline"><span class="d">9 рабочих дней</span><span class="p">261 228&nbsp;₽</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="roadmap">
+  <div class="container">
+    <div class="s-head">
+      <div class="l reveal">
+        <span class="eyebrow">05 · Этапы работы</span>
+        <h2>Как мы дойдём от&nbsp;старта до&nbsp;запуска</h2>
+      </div>
+      <div class="r reveal">
+        Проект разбит на&nbsp;6&nbsp;этапов с&nbsp;промежуточными демо. Вы&nbsp;видите результат каждые&nbsp;2&nbsp;недели и&nbsp;можете корректировать приоритеты.
+      </div>
+    </div>
+
+    <div class="road">
+      <div class="road-line"></div>
+
+      <div class="rstep reveal">
+        <div class="rlabel">Этап 1 · 2 недели</div>
+        <h4>Аналитика и&nbsp;структура данных</h4>
+        <p>Декомпозиция номенклатуры 1С, уточнение маркерной модели L1/L2/L3, ER-диаграмма, карта API. Согласование технического стека и&nbsp;кода ссылок для&nbsp;QR.</p>
+        <span class="rmeta">Артефакт: Утверждённая модель данных</span>
+      </div>
+
+      <div class="rstep reveal">
+        <div class="rlabel">Этап 2 · 3–4 недели</div>
+        <h4>UX/UI-дизайн и&nbsp;прототип</h4>
+        <p>Макеты 11&nbsp;страниц, сценарий «Мой каталог», компоновка карточки изделия, дизайн-система. Интерактивный прототип в&nbsp;Figma с&nbsp;проработкой анимаций.</p>
+        <span class="rmeta">Демо прототипа</span>
+      </div>
+
+      <div class="rstep reveal">
+        <div class="rlabel">Этап 3 · 4–6 недель</div>
+        <h4>Фронтенд и&nbsp;витрина</h4>
+        <p>Адаптивная вёрстка под&nbsp;5&nbsp;размеров экрана, PWA, личный кабинет, сценарии «Мой каталог» и&nbsp;заявки, мультиязычность.</p>
+        <span class="rmeta">Демо публичной части</span>
+      </div>
+
+      <div class="rstep reveal">
+        <div class="rlabel">Этап 4 · 4–5 недель</div>
+        <h4>Бэкенд и&nbsp;интеграция с&nbsp;1С</h4>
+        <p>CommerceML-обмен, админ-панель, CRM-коннектор, IMAP, публикация в&nbsp;Telegram/МАКС/Avito, система ролей, журнал действий, 152-ФЗ.</p>
+        <span class="rmeta">Приёмка интеграций</span>
+      </div>
+
+      <div class="rstep reveal">
+        <div class="rlabel">Этап 5 · 3–4 недели · опционально для&nbsp;Платформы</div>
+        <h4>ИИ-модули и&nbsp;автоматизация</h4>
+        <p>Развёртывание RAG-стека, индексация базы знаний, сборка конструктора ТКП, векторный поиск, сценарии автоответов по&nbsp;почте, предпроектный помощник.</p>
+        <span class="rmeta">Включено в&nbsp;пакет «Платформа»</span>
+      </div>
+
+      <div class="rstep reveal">
+        <div class="rlabel">Этап 6 · 2 недели</div>
+        <h4>Тестирование, SEO и&nbsp;запуск</h4>
+        <p>Нагрузочное тестирование, кроссбраузерная проверка, SEO-аудит, настройка мониторинга и&nbsp;алертов, миграция контента, обучение администраторов.</p>
+        <span class="rmeta">Продакшен-запуск</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="contact">
+  <div class="bg-ring"></div>
+  <div class="container inner">
+    <h2 class="reveal">
+      Концепция понятна —<br><span class="grad">запускаемся?</span>
+    </h2>
+    <p class="reveal">
+      Цифры на&nbsp;руках, структура согласована. Осталось дать старт первому
+      спринту — команда свободна и&nbsp;готова приступить.
+    </p>
+    <div class="fctas reveal">
+      <a class="btn btn-primary" href="https://t.me/pm_neatstudio">
+        Написать в&nbsp;Telegram
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="mailto:e.elhov@neat-studio.ru">e.elhov@neat-studio.ru</a>
+    </div>
+
+    <div class="contact reveal" style="margin-bottom:24px;padding:20px 24px;background:#f0f8ff;border:1px solid #b3d9f0;border-radius:16px;display:inline-block;text-align:left;max-width:600px">
+      <div style="font-size:13px;font-weight:700;color:#1a6fa8;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px">🎁 Специальное предложение</div>
+      <div style="font-size:15px;font-weight:600;color:#0a1424;margin-bottom:8px">Фиксация цены при&nbsp;подписании договора до&nbsp;15&nbsp;мая</div>
+      <div style="font-size:13px;color:#3a4558;line-height:1.5">Стоимость фиксируется на&nbsp;6&nbsp;месяцев вне зависимости от&nbsp;курса и&nbsp;тарифов. Старт аналитики — в&nbsp;течение 5&nbsp;рабочих дней.</div>
+    </div>
+
+    <div class="contact reveal">
+      <div class="ci">
+        <div class="l">Менеджер</div>
+        <div class="v">Евгений</div>
+      </div>
+      <div class="ci">
+        <div class="l">Телефон</div>
+        <div class="v">+7 985 219 46 04</div>
+      </div>
+      <div class="ci">
+        <div class="l">Telegram</div>
+        <div class="v">@pm_neatstudio</div>
+      </div>
+      <div class="ci">
+        <div class="l">Почта</div>
+        <div class="v">e.elhov@neat-studio.ru</div>
+      </div>
+      <div class="ci">
+        <div class="l">Сайт</div>
+        <div class="v">neat-studio.ru</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container frow">
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <img src="media/logo/NeatStudio-black.svg" alt="Neat Studio" style="height:20px;width:auto;opacity:.55" />
+      <span style="color:var(--line);font-size:18px">·</span>
+      <span>КП подготовлено для&nbsp;ООО «НПЦ&nbsp;ПРОМТЕХ» · © 2026</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <img src="media/logo/logo_ru.svg" alt="НПЦ ПРОМТЕХ" style="height:22px;width:auto;opacity:.5" />
+      <span>Версия 1.0 · Действительно 30 дней</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, y: 0, duration: .9, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+gsap.to('.hero .reveal', { opacity: 1, y: 0, duration: 1, stagger: .12, ease: 'power3.out', delay: .1 });
+const roadLine = document.querySelector('.road-line');
+if (roadLine) {
+  gsap.to(roadLine, {
+    scaleY: 1, ease: 'none',
+    scrollTrigger: { trigger: '.road', start: 'top 70%', end: 'bottom 75%', scrub: true }
+  });
+}
+document.querySelectorAll('.tier').forEach(t => {
+  t.addEventListener('mouseenter', () => gsap.to(t, { y: -6, duration: .35, ease: 'power2.out' }));
+  t.addEventListener('mouseleave', () => gsap.to(t, { y: 0, duration: .35, ease: 'power2.out' }));
+});
+gsap.to('.blob.b1', { x: 40, y: 30, duration: 14, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+gsap.to('.blob.b2', { x: -50, y: -20, duration: 18, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+gsap.to('.blob.b3', { x: 30, y: -40, duration: 20, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+gsap.to('.bg-ring', { rotation: 360, duration: 60, repeat: -1, ease: 'none' });
+</script>
+
+</body>
+</html>
