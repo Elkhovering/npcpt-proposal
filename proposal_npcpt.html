@@ -233,6 +233,15 @@ footer{padding:40px 0;border-top:1px solid var(--line);margin-top:80px;color:var
 footer .frow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .reveal{opacity:0;transform:translateY(24px)}
 @media(max-width:900px){nav.top{gap:14px;padding:8px 10px 8px 16px}nav.top a.nlink{display:none}nav.top a.cta{padding:8px 14px}}
+/* Lightbox */
+.bc-screen img{cursor:zoom-in;transition:transform .2s}
+.bc-screen img:hover{transform:scale(1.02)}
+#lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,12,25,.92);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px}
+#lightbox.open{display:flex}
+#lightbox img{max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.6);object-fit:contain}
+#lightbox .lb-close{position:absolute;top:20px;right:24px;color:#fff;font-size:32px;line-height:1;cursor:pointer;opacity:.7;transition:opacity .2s;background:none;border:none;padding:4px 10px}
+#lightbox .lb-close:hover{opacity:1}
+#lightbox .lb-caption{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.65);font-size:13px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -406,12 +415,8 @@ footer .frow{display:flex;justify-content:space-between;align-items:center;flex-
     <div class="proto-cta-bar reveal">
       <div class="pcb-text">
         <h4>Концептуальные экраны будущего сайта</h4>
-        <p>Каталог с маркерной классификацией, карточка изделия с QR, «Мой каталог» и личный кабинет.</p>
+        <p>Каталог с маркерной классификацией, карточка изделия с QR, «Мой каталог» и личный кабинет. Нажмите на экран для увеличения.</p>
       </div>
-      <a class="btn-white" href="https://promtech-navigator.lovable.app/" target="_blank">
-        Открыть прототип
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      </a>
     </div>
 
     <!-- Bento grid — 4 карточки, 4 уникальных изображения -->
@@ -587,7 +592,7 @@ footer .frow{display:flex;justify-content:space-between;align-items:center;flex-
       <a class="doc-btn" href="https://cloud.mail.ru/public/Qd2S/uEDQqvy9J/%D0%9C%D0%B0%D1%80%D1%82%202026/%D0%9D%D0%9F%D0%A6%D0%9F%D0%A2/%D0%A1%D0%BC%D0%B5%D1%82%D0%B0.pdf" target="_blank">
         <div class="dico xlsx"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4h4M14 3L4 3v18h16V7z"/><path d="M8 13h8M8 17h6"/></svg></div>
         <div class="dtxt">
-          <span class="dlabel">Excel · Смета</span>
+          <span class="dlabel">PDF · Смета</span>
           <span class="dname">Детальный просчёт по всем пакетам</span>
         </div>
         <svg style="margin-left:8px;opacity:.45" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -730,11 +735,11 @@ footer .frow{display:flex;justify-content:space-between;align-items:center;flex-
       спринту — команда свободна и&nbsp;готова приступить.
     </p>
     <div class="fctas reveal">
-      <a class="btn btn-primary" href="https://t.me/pm_neatstudio">
+      <a class="btn btn-primary" href="https://t.me/neatstudioru">
         Написать в&nbsp;Telegram
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a class="btn btn-ghost" href="mailto:e.elhov@neat-studio.ru">e.elhov@neat-studio.ru</a>
+      <a class="btn btn-ghost" href="mailto:info@neat-studio.ru">info@neat-studio.ru</a>
     </div>
 
     <div class="contact reveal" style="margin-bottom:24px;padding:20px 24px;background:#f0f8ff;border:1px solid #b3d9f0;border-radius:16px;display:inline-block;text-align:left;max-width:600px">
@@ -746,19 +751,19 @@ footer .frow{display:flex;justify-content:space-between;align-items:center;flex-
     <div class="contact reveal">
       <div class="ci">
         <div class="l">Менеджер</div>
-        <div class="v">Евгений</div>
+        <div class="v">Сергей</div>
       </div>
       <div class="ci">
         <div class="l">Телефон</div>
-        <div class="v">+7 985 219 46 04</div>
+        <div class="v">+7 982 691 97 17</div>
       </div>
       <div class="ci">
         <div class="l">Telegram</div>
-        <div class="v">@pm_neatstudio</div>
+        <div class="v">@neatstudioru</div>
       </div>
       <div class="ci">
         <div class="l">Почта</div>
-        <div class="v">e.elhov@neat-studio.ru</div>
+        <div class="v">info@neat-studio.ru</div>
       </div>
       <div class="ci">
         <div class="l">Сайт</div>
@@ -769,6 +774,13 @@ footer .frow{display:flex;justify-content:space-between;align-items:center;flex-
 </section>
 
 </main>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" aria-label="Закрыть">&#x2715;</button>
+  <img src="" alt="" />
+  <div class="lb-caption"></div>
+</div>
 
 <footer>
   <div class="container frow">
@@ -808,6 +820,28 @@ gsap.to('.blob.b1', { x: 40, y: 30, duration: 14, repeat: -1, yoyo: true, ease: 
 gsap.to('.blob.b2', { x: -50, y: -20, duration: 18, repeat: -1, yoyo: true, ease: 'sine.inOut' });
 gsap.to('.blob.b3', { x: 30, y: -40, duration: 20, repeat: -1, yoyo: true, ease: 'sine.inOut' });
 gsap.to('.bg-ring', { rotation: 360, duration: 60, repeat: -1, ease: 'none' });
+// Lightbox
+(function(){
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  const lbCap = lb.querySelector('.lb-caption');
+  const lbClose = lb.querySelector('.lb-close');
+  function open(src, alt) {
+    lbImg.src = src; lbImg.alt = alt; lbCap.textContent = alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.bc-screen img').forEach(img => {
+    img.addEventListener('click', () => open(img.src, img.alt));
+  });
+  lbClose.addEventListener('click', close);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
 </script>
 
 </body>
